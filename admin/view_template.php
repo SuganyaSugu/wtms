@@ -1,9 +1,14 @@
 <?php include('common/header.php');?>
 <?php include('get_template.php');?>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<?php 
+  function url(){
+    return sprintf(
+      "%s://%s%s",
+      isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+      $_SERVER['SERVER_NAME'],
+      "");
+  }
+?>
 <title>WTMS  - View Template</title>
 <div class="card shadow mb-4">
 <div class="card-header py-3">
@@ -11,7 +16,7 @@
 </div>
 <div class="card-body">
     <form method="post">
-        <div class="row mb-3    ">
+        <div class="row mb-3">
             <div class="col-sm-4">
                 <label class="text-dark fw-600" for="client">Client</label>
                 <input type="text" class="form-control" name="client" id="client" placeholder="Client name" value="<?php echo isset($_SESSION['view_session']['client']) && !empty($_SESSION['view_session']['client']) ? $_SESSION['view_session']['client'] : ''; ?>">
@@ -20,7 +25,12 @@
                 <label class="text-dark fw-600" for="template">Template</label>
                 <select class="form-control" name="template" id="template">
                     <option value="">-- Select --</option>
-                    <option value="template1"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "template1" ? "selected" : ''; ?>>Template 1</option>
+                    <option value="BizLand"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "BizLand" ? "selected" : ''; ?>>BizLand</option>
+                    <option value="MeFamily"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "MeFamily" ? "selected" : ''; ?>>MeFamily</option>
+                    <option value="OnePage"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "OnePage" ? "selected" : ''; ?>>OnePage</option>
+                    <option value="PhotoFolio"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "PhotoFolio" ? "selected" : ''; ?>>PhotoFolio</option>
+                    <option value="Presento"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "Presento" ? "selected" : ''; ?>>Presento</option>
+                    <option value="Yummy"  <?php  echo isset($_SESSION['view_session']['template']) && !empty($_SESSION['view_session']['template']) &&  $_SESSION['view_session']['template'] == "Yummy" ? "selected" : ''; ?>>Yummy</option>
                 </select>
             </div>
             <div class="col-sm-4">
@@ -48,6 +58,7 @@
                     <th>Sl.No</th>
                     <th>Client</th>
                     <th>Template</th>
+                    <th>URL</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -69,11 +80,16 @@
                     <td><?= ++$i ;?></td>
                     <td><?= $row['client_name']; ?></td>
                     <td><?= $row['client_template']; ?></td>
+                    <td><a href="<?= url()."?client=".$row['client_name']; ?>" target="_blank"><?= url()."?client=".$row['client_name']; ?></a></td>
                     <td><?= $status; ?></td>
                     <td>
                         <div class="d-flex">
-                            <a href="#" class="text-primary mr-2"><i class="fa fa-edit"></i> </a>
-                            <a href="#" class="text-danger" data-toggle="modal" data-target="#myModal"  ><i class="fa fa-trash"></i> </a>
+                            <a href="edit_template.php?id=<?= $row['client_id']; ?>" class="text-primary mr-2"><i class="fa fa-edit"></i> </a>
+                            <?php if($status != "Deleted"){ ?>
+                                <a href="#" class="text-danger mr-2" data-toggle="modal" data-target="#deleteModal" onclick="setClientId(<?= $row['client_id']; ?>)" ><i class="fa fa-trash"></i> </a>
+                            <?php } ?>
+                            
+                            <a href="<?= url()."?client=".$row['client_name']; ?>" target="_blank" class="text-success" ><i class="fa fa-eye"></i> </a>
                         </div>
                     </td>
                 </tr>
@@ -83,34 +99,52 @@
     </div>
 </div>
 </div>
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Modal body..
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+ <!-- Logout Modal-->
+ <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+             </div>
+             <div class="modal-body">Are you sure to delete the template?</div>
+             <div class="modal-footer">
+                    <input hidden id="clientId" >
+                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                 <button class="btn btn-primary" onclick="deleteClient()">Delete</button>
+             </div>
+         </div>
+     </div>
+ </div>
 <?php include('common/footer.php');?>
 <script>
     $(document).ready(function(){
         $('#view_template_menu').addClass('active');
         $('input').addClass('form-control');
     });
+    function setClientId(id){
+        $('#clientId').val(id);
+    }
+    function deleteClient(){
+        let client_id = $('#clientId').val();
+        $.ajax({
+            url:"delete.php",
+            method:'post',
+            data:{
+                id:client_id
+            },
+            success:function(res){
+               if(res == 1){
+                    location.reload();
+               }else{
+                alert("something went wrong");
+               }
+            },
+            error:function(res){
+                console.log(res)
+            }
+        });
+    }
 </script>

@@ -27,11 +27,28 @@
                         <div class="col-sm-12">
                             <label class="text-dark fw-800"  for="template1">Select Template</label>
                             <br>
-                            <input type="radio" required value="template1" name="template1" id="template1"> <label  for="template1">Template1</label>
-                            <input type="radio" value="template2" name="template1" id="template2"> <label  for="template2">Template2</label>
-                            <input type="radio" value="template3" name="template1" id="template3"> <label  for="template3">Template3</label>
-                            <input type="radio" value="template4" name="template1" id="template4"> <label  for="template4">Template4</label>
-                            <input type="radio" value="template5" name="template1" id="template5"> <label  for="template5">Template5</label>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <input type="radio" required value="BizLand" name="template1" id="template1"> <label  for="template1"> <img width="200px" src="img/bizland.png"></label>
+                                </div>
+                                <div  class="mr-2">
+                                    <input type="radio" value="MeFamily" name="template1" id="template2"> <label  for="template2"> <img width="200px" src="img/me-family.png"></label>
+                                </div>
+                                <div>
+                                    <input type="radio" value="OnePage" name="template1" id="template3"> <label  for="template3"> <img width="200px" src="img/onepage.png"></label>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <input type="radio" required value="PhotoFolio" name="template1" id="template4"> <label  for="template4"> <img width="200px" src="img/potofolio.png"></label>
+                                </div>
+                                <div  class="mr-2">
+                                    <input type="radio" value="Presento" name="template1" id="template5"> <label  for="template5"> <img width="200px" src="img/presento.png"></label>
+                                </div>
+                                <div>
+                                    <input type="radio" value="Yummy" name="template1" id="template6"> <label  for="template6"> <img width="200px" src="img/yummy.png"></label>
+                                </div>
+                            </div>
                         </div>
                     </div>   
                     <div class="row text-center">
@@ -64,7 +81,7 @@ if(isset($_SESSION['success']) && $_SESSION['success'] != ""){?>
 <?php $_SESSION['success'] = ""; }
 ?>
 <?php 
-if($_SESSION['error'] != ""){?>
+if(isset($_SESSION['error']) && $_SESSION['error'] != ""){?>
 <script>
     toastMixinError.fire({
         animation: true,
