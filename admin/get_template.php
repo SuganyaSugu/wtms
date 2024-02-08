@@ -5,6 +5,12 @@ $where = "1=1 ";
 if(isset($_POST['cancel'])){    
     $_SESSION['view_session'] = "";
 }
+if(isset($_GET) && isset($_GET['id'])){
+    $client_id=$_GET['id'];
+    if(!empty($client_id) ){
+        $where .= " and client_id='".$client_id."'";
+    }
+}
 if(isset($_POST['submit'])){    
     $client=$_POST['client'];
     $template=$_POST['template'];
@@ -23,9 +29,10 @@ if(isset($_POST['submit'])){
     if(!empty($template)){
         $where .= " and client_template='".$template."'";
     }
-    // echo '<pre>'; print_r($_SESSION); echo '</pre>'; die;
+}else{
+    $_SESSION['view_session'] = "";
 }
-$sql="SELECT * from client where ".$where;
+$sql="SELECT * from client where ".$where." order by client_id desc";
 
 if($query=mysqli_query($con,$sql)){
     while($row = $query->fetch_assoc()) {
