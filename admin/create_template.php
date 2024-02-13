@@ -27,25 +27,25 @@
                         <div class="col-sm-12">
                             <label class="text-dark fw-800"  for="template1">Select Template</label>
                             <br>
-                            <div class="d-flex">
-                                <div class="mr-2">
+                            <div class="d-flex" style="gap: 10px;margin-top: 10px;">
+                                <div style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" required value="BizLand" name="template1" id="template1"> <label  for="template1"> <img width="200px" src="img/bizland.png"></label>
                                 </div>
-                                <div  class="mr-2">
+                                <div  style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" value="MeFamily" name="template1" id="template2"> <label  for="template2"> <img width="200px" src="img/me-family.png"></label>
                                 </div>
-                                <div>
+                                <div style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" value="OnePage" name="template1" id="template3"> <label  for="template3"> <img width="200px" src="img/onepage.png"></label>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="mr-2">
+                            <div class="d-flex" style="gap: 10px;margin-top: 10px;">
+                                <div style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" required value="PhotoFolio" name="template1" id="template4"> <label  for="template4"> <img width="200px" src="img/potofolio.png"></label>
                                 </div>
-                                <div  class="mr-2">
+                                <div  style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" value="Presento" name="template1" id="template5"> <label  for="template5"> <img width="200px" src="img/presento.png"></label>
                                 </div>
-                                <div>
+                                <div style="display: flex;align-items: center;gap: 10px;padding: 10px;border-radius: 4px;background: #e7e7e7;">
                                     <input type="radio" value="Yummy" name="template1" id="template6"> <label  for="template6"> <img width="200px" src="img/yummy.png"></label>
                                 </div>
                             </div>
