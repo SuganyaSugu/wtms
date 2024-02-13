@@ -1,8 +1,8 @@
 <?php include('common/header.php');?>
-<title>WTMS  - Create Template</title>
+<title>WTMS  - Create Client</title>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Create Template</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Create Client</h6>
     </div>
     <div class="card-body">
         <form action="insert_template.php" method="post">

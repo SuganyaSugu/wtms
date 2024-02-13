@@ -1,9 +1,9 @@
 <?php include('common/header.php');?>
 <?php include('get_template.php');?>
-<title>WTMS  - Edit Template</title>
+<title>WTMS  - Edit Client</title>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Edit Template</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Edit Client</h6>
     </div>
     <?php 
         if(!empty($data)){

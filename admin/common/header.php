@@ -78,14 +78,14 @@
             <li class="nav-item" id="create_template_menu">
                 <a class="nav-link" href="create_template.php">
                     <i class="fas fa-fw fa-plus"></i>
-                    <span>Create template</span></a>
+                    <span>Create Client</span></a>
             </li>
             <hr class="sidebar-divider  my-0">
             <!-- Divider -->
             <li class="nav-item " id="view_template_menu">
                 <a class="nav-link" href="view_template.php">
                     <i class="fas fa-fw fa-eye"></i>
-                    <span>View template</span></a>
+                    <span>View Client</span></a>
             </li>
             <hr class="sidebar-divider  my-0">
             <!-- Divider -->
