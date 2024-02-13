@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
 
     $_SESSION['view_session'] = $_POST;
     if(!empty($client)){
-        $where .= " and client_name='".$client."'";
+        $where .= " and client_name like '%".$client."%'";
     }
     if($status == 0 ){
         $where .= " and client_status='".$status."'";
