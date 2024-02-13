@@ -8,15 +8,13 @@
         <form action="insert_template.php" method="post">
             <div class="row">
                 <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-12">
                     <div class="row mb-3">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label class="text-dark fw-800" for="client_name">Client Name</label>
                             <input name="client_name" required id="client_name" class="form-control">
                         </div>
-                    </div>  
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label  class="text-dark fw-800"  for="active">Status</label>
                             <br>
                             <input type="radio" required value="0" name="status" id="active"> <label  for="active">Active</label>
